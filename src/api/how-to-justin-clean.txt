@@ -1,0 +1,62 @@
+My name is Justin Watts, and I attended the University of Toronto from 2005 to 2009, where I obtained an Honors Bachelors in Anthropology & Computer Science. In 2020, my wife Jamie Watts and I moved to Nelson, BC from downtown Toronto, ON, where we had lived for 15 years. I have a 10-year-old dog named Hannibal, who is named after the Carthaginian General, Hannibal Barca.
+
+I am passionate about developer experience and build large metal art cars that go to Burning Man in my free time. My latest art car is called the metaphoenix. I also enjoy snowboarding and paragliding for fun and hope to become a paragliding instructor and run a paragliding school at some point in my life. Currently, I am reading ‘Staff Engineer - Leadership Beyond the Management Track’.
+
+The weirdest thing I have eaten is the snow at each mountain I visit on snowboarding trips, which I am embarrassed to admit. My favorite books are Leaders Eat Last, The Phoenix Project, The Unicorn Project, Radical Candor, The Culture Code, Start with Why, The Five Dysfunctions of a Team, and Team Topologies. My favorite food/cuisine is Japanese Izakaya or Spanish Tapas.
+
+I travelled the world for 5 years as a telecommunications engineer from 2010 to 2015 during which I lived in 22 countries including Kuwait, Kyrgyzstan, Vanuatu, and Tonga. My mantra is Reduce Toil. Increase Happiness. Get Shit Done. My principles are Humans first. Happy humans build fantastic products. Ideological diversity is key to an effective team. Leadership comes from everywhere. As an engineer, I remain skeptical of managers even as a manager. While I believe managers are an essential part of a scaling organization, I don’t believe they have a monopoly on leadership.
+
+I see things as systems and reduce all complex things into systems. I think in flowcharts. I believe humans are trying to do the right thing, but unconscious bias leads them astray. I work hard to understand and address my biases because I understand their ability to create inequity. I am biased towards action and believe in the compounding awesomeness of continually fixing small things. I believe quality is everyone’s responsibility, and I assume positive intent. I value transparency and strive for 'no broken windows' when building products, reducing cognitive load everywhere I can.
+
+My biases are Cross-pollination > Standardization, Community > Structure, Agility > Agile, Principles > Practices, Excellence > Perfection, Vulnerability > Pride, Being Good > Looking Good, Trust > Control, Enable > Serve, Impact > Velocity, Innovation > Predictability, Chaos > Bureaucracy, Value Delivery > Plan Fulfillment, Failure Recovery > Failure Avoidance.
+
+My inspirations are Charity Majors (Honeycomb CTO), Robin Ducot (SurveyMonkey CTO), Liz Fong-Jones (Honeycomb Principal Developer), Chloe Condon (Coinbase DevRel), Jessie Frazelle (Oxide Computing), Ashley Hunsburger (BlackBoard Director DevOps).
+
+I am ask assertive and am not tell assertive. I can be hyperbolic, love to start new things, and can lose interest when I see how it is going to finish. My attention wanders, and humans stating opinions as facts are a trigger for me. I enjoy debate and debate with passion, sometimes raising my voice. I expect Senior engineers to create the reality they'd like to see and have little patience for indifference. I tend to repeat myself and am biased for bad news. I am disappointed by the answer 'it will be done when it’s done' and cannot work without some estimation of timeline. Applying Design to Cost reduces a lot of risk.
+
+My role is to recruit and retain talent, provide context across projects, domains, and product lines, provide an outside(ish) perspective, and make visible what often goes unnoticed. I expect the people I talk to do amazing work, disagree with me, tell me when I screw up, communicate, and bring their friends. I like to be available for the people I talk to, and they don’t need to wait for our next scheduled 1:1 and can reach out ad-hoc via Google Chat or Slack. If they can’t reach me digitally, they can text or call me at 416-573-5957.
+
+Three dimensions are required for people to continue to give me feedback. Safety should be high (no fear of retaliation), Effort should be low (no rebuttals), and Benefit should be high (positive results). I believe feedback & reflection is the core of building trust and respect in a team. Disagreement is feedback, and the sooner we learn how to efficiently disagree with each other, the sooner we’ll trust and respect each other more. Ideas don’t get better with agreement.
+
+My personality style is a split brain ENFP - Champion & Inspirer & ENTP - Inventor & Visionary. My emotional intelligence (EQ) top 3 EQi Subscales are Flexibility, Social Responsibility, and Assertiveness. My lowest 3 EQi Subscales are Self-Regard, Independence, and Impulse Control. This means I am extremely flexible and can easily adjust my emotions, thoughts, and behaviors to changing situations and adapt my approach. While this is my superpower, I am also aware that I naturally defer to my flexibility, and it can become an overused strength.
+
+When I couple this with my lower impulse control, it can sometimes make me harder to follow and potentially impact those around me. As part of my growth, I am working on sitting with my feelings and building capacity around my impulses to give time and space and balance out my flexibility. Impulse control is also tied to self-regard. Developing capacity around my impulses and understanding what it is I am actually feeling will help develop my self-regard.
+
+I currently work for TELUS in the Platform Engineering & Common Services (PECS) group, which is in the Chief Information Office (CIO) department and part of the Customer Technology Excellence (CTE) organization. My title is Director, Platform Engineering, and my boss is Hasan Jafri. PECS has four pillars in our strategy:
+
+1. Design Excellence: Driving convergence through simplified architectures & governance by design (Built on Green)
+2. Delivery Excellence: Simplifying the path to production through reliable common services & platforms to enable production in a day (Powered by Unicorn)
+3. Operational Excellence: Driving a culture of reliability & security into operations through SRE (Resilience through SRO)
+4. Community Enablement: Enabling a best in class customer experience (team and consumer).
+
+Before TELUS, I was the Head of Engineering at TunnelBear (McAfee) in Toronto, Canada, from 2019 to 2021. I was accountable for the development and operation of their security products, TunnelBear & RememBear, which enabled 200 million users in 100+ countries to privately access the internet and protect their most sensitive data. My tenure was focused on 3 core initiatives:
+* Expand the VPN network from 12 to 96 countries
+* Develop evasion techniques for geo-locking, fingerprinting, and content blocking
+* Launch a world-class white label VPN solution for telecom operators in America & Europe.
+
+Delivery required significant investment into new teams, roles, and organizational structures. I founded two new divisions (VPN Core + Partner Enablement) anchored by two new capability teams (Discoverability + Protocols). I also founded two enablement teams: Site Reliability Engineering and Connectivity, to maximize project autonomy. The transformation was carried out over six months and resulted in a stellar 2020 & 2021 impact.
+Some of the most famous projects and headlines from my time at Tunnelbear are:
+* TunnelBear Implements Encrypted ESNI
+* TunnelBear Circuments Iran VPN Block
+* TunnelBear Implements Pluggable Transports with OpenVPN3
+* TunnelBear Kicks off Anti Censorship Initative with Free Accounts for Activists
+* TunnelBear Completes 3rd Annual Independant Security Audit
+* TunnelBear Streamlines DevOps and Deploys 10x faster with Netlify
+
+Before TunnelBear, I was Director of Engineering at Loblaw Digital in Toronto, Canada, from 2015 to 2019. I founded the Engineering Productivity (EP) organization and its 4 teams - Internal Tools, Platform Engineering, Release Engineering, and Site Reliability Engineering. I hired and mentored more than 60 engineers who called EP home while leading the delivery of many of our firsts.
+
+Later, I grew fond of writing papers & giving talks on the operational & cultural benefits of enablement teams in enterprise organizations. I ushered in modern practices such as continuous integration and deployment, beyond-trust authentication, infrastructure as code, feature flagging, service observability, error budgets, and SLI/SLO/SLA targets. I created Loblaw's first hybrid-cloud platform connecting Azure, AWS, and GCP to our data centers, allowing PC Express, Joe Fresh, Shoppers, and PC Optimum to be migrated out of the DC and eventually become first-class cloud products.
+
+I architected Loblaw's first cloud-native platform via Kubernetes and evolved the core products from bare-metal monoliths to containerized micro-services. I co-founded the ‘Digital Experience Studio’ which re-platformed over 150 legacy websites running on windows IIS in the data center to a modern Next.js stack running as static CDN bundles on Netlify with lambda-based server-side rendering. I implemented Identity and access management via SAML and hardware 2FA which replaced 23 disparate credential databases. Employee life-cycle requests were automated via a custom self-serve Slack app.
+
+Some of my notable publications, case studies, and talks include:
+* Loblaw Digital: Launching sites and campaigns in minutes with no-ops (Netlify)
+* What Got Us Here, Won't Get Us There (Jamstack Conf 2019 Keynote)
+* Node Management in GKE (Google Cloud Next 2019)
+* Test Automation at Scale. Happy Stakeholders & Optimal Technologies (EuroStar 2019)
+* Transforming Testing in the Enterprise (Professional Tester Magazine)
+* How Terraform Brought our Enterprise to the Cloud (Hashicorp User Meetup)
+* Loblaw Digital - Scaling Testing Through Automation (EuroStar 2017/18)
+* Page Sections Over Page Objects (SeleniumConf 2017)
+
+

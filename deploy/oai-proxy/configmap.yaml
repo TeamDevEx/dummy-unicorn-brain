@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: oia-configmap
+  namespace: oai-proxy
+data:
+  config.txt: |
+    us-east: true
+    canada-east: true

@@ -1,0 +1,36 @@
+name: Generate and commit the updated OpenAPI spec file
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+    paths:
+      - src/**
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run Python script
+        run: python src/api/generate-openapi-spec.py
+
+      - name: Git Commit and Push
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          git commit -am "Updated OpenAPI spec file" && git push || :

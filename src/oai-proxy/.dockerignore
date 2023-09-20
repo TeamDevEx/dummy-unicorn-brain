@@ -1,0 +1,9 @@
+venv/
+yaml/
+test/
+swagger/
+.env
+.env.template
+cloudbuild.yaml
+deployment.yaml
+secret

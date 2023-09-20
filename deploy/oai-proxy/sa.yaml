@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    iam.gke.io/gcp-service-account: gen-ai-gsa@cdo-gen-ai-island-np-204b23.iam.gserviceaccount.com
+  name: gen-ai-ksa
+  namespace: oai-proxy

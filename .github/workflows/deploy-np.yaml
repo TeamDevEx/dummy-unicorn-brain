@@ -1,0 +1,144 @@
+# Sample workflow from the Engineering Productivity team.
+# Deploy your application to Google Kubernetes Engine using Cloud Deploy
+# You must have enabled GitHub Actions for your Google Cloud Project as part of the cloud onboarding process to use this workflow.
+name: Deploy to np in gen-ai-island
+on:
+  push:
+    branches: main
+    paths-ignore:
+      - 'deploy/**'
+  workflow_dispatch:
+
+env:
+  # Your Google Cloud Non-Prod Project
+  PROJECT_ID: cdo-gen-ai-island-np-204b23
+  # Your image name
+  IMAGE_NAME: gen-ai-api
+  # Your namespace name
+  NAMESPACE: gen-ai-api-np
+   # Your deployment name
+  DEPLOYMENT: gen-ai-api-np
+  # The Google Cloud Region where you want to deploy; you likely don't have to change this
+  REGION: northamerica-northeast1
+  # The name of the Google Kubernetes Engine cluster where you want to deploy
+  CLUSTER_NAME: gen-ai-gke-nane1
+  
+jobs:
+  deploy:
+    name: deploy
+    runs-on: [ubuntu-latest]
+    permissions:
+      contents: 'write'
+      pull-requests: 'write'
+      id-token: 'write'
+    steps:
+      # Print EP Banner (totally unnecessary but fun)
+      - name: "Hello action"
+        uses: telus/action-print-unicorn@v1.0
+
+      # Check out your GitHub repo into the container executing these steps
+      - name: "Cloning repo"
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      
+      # Authenticate to the Google Cloud platform using Workload Identity Federation, the most secure and preferred
+      # way to connect to our Google Cloud Platform from GitHub.
+      # The workload_identity_provider is managed for the entire cluster and you don't need to worry about it.
+      # The service_account must be setup within your Google Project. This is done by the Cloud CoE as part of
+      # project onboarding, so you don't need to worry about it beyond enabling GitHub actions as part of your
+      # Google Cloud project onboarding request.
+      - id: auth
+        name: Authenticate to Google using WIF
+        uses: google-github-actions/auth@v0
+        with:
+          workload_identity_provider: ${{ secrets.CDO_WORKLOAD_IDENTITY_PROVIDER_GCP }} 
+          service_account:  'cicd-service-account@${{ env.PROJECT_ID }}.iam.gserviceaccount.com'
+          project_id:  ${{ env.PROJECT_ID }}
+          token_format: 'access_token'
+      
+      # The GCloud CLI must be installed and configured in the container to enable subsequent steps
+      - name: Setup gcloud CLI
+        uses: google-github-actions/setup-gcloud@v1
+        with:
+          project_id: ${{ env.PROJECT_ID }}
+          install_components: 'gke-gcloud-auth-plugin'
+
+      - name: Login to GAR
+        uses: docker/login-action@v2
+        with:
+          registry: northamerica-northeast1-docker.pkg.dev
+          username: oauth2accesstoken
+          password: '${{ steps.auth.outputs.access_token }}'
+
+      # Configure docker authorization for access to the Google Artifact Registry
+      - name: Configure Docker
+        run: |-
+          gcloud --quiet auth configure-docker northamerica-northeast1-docker.pkg.dev
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          push: true
+          tags: northamerica-northeast1-docker.pkg.dev/${{ env.PROJECT_ID }}/applications/${{ env.IMAGE_NAME }}:${{ github.sha }},northamerica-northeast1-docker.pkg.dev/${{ env.PROJECT_ID }}/applications/${{ env.IMAGE_NAME }}:np
+
+      - name: rollout and status check
+        run: |          
+          gcloud container fleet memberships get-credentials ${{ env.CLUSTER_NAME }} --project=${{ env.PROJECT_ID }}
+
+          # Start the deployment rollout
+          kubectl rollout restart deployment/${{ env.DEPLOYMENT }} -n ${{ env.NAMESPACE }}
+
+          # Check the rollout status
+          kubectl rollout status deployment/${{ env.DEPLOYMENT }} -n ${{ env.NAMESPACE }} --timeout=5m
+
+          # If rollout status command exited with error status (i.e., rollout failed), then exit the script
+          if [ $? -ne 0 ]; then
+            echo "Deployment failed"
+            exit 1
+          fi
+
+          sleep 10
+
+          # Loop until all pods are in the 'Running' state
+          while true; do
+            # Get all pods of the deployment
+            PODS=$(kubectl get pods -n ${{ env.NAMESPACE }} -l app=${{ env.DEPLOYMENT }} -o jsonpath="{.items[*].metadata.name}")
+
+            ALL_PODS_RUNNING=true
+
+            # Check each pod's status
+            for POD in $PODS
+            do
+              POD_STATUS=$(kubectl get pod $POD -n ${{ env.NAMESPACE }} -o jsonpath="{.status.phase}")
+              RESTART_COUNT=$(kubectl get pod $POD -n ${{ env.NAMESPACE }} -o jsonpath="{.status.containerStatuses[0].restartCount}")
+              
+              if [ "$POD_STATUS" != "Running" ] || [ "$RESTART_COUNT" -gt 0 ]; then
+                echo "Pod $POD is not running correctly. Current status: $POD_STATUS, Restart Count: $RESTART_COUNT"
+                echo "Describing pod for more details..."
+                kubectl describe pod $POD -n ${{ env.NAMESPACE }}
+                echo "Fetching logs..."
+                kubectl logs $POD -n ${{ env.NAMESPACE }}
+                echo "Failure detected. Exiting."
+                exit 1
+              fi
+            done
+
+            # If all pods are running, break the loop
+            if $ALL_PODS_RUNNING; then
+              break
+            fi
+
+            # Wait for a while before checking again
+            echo "Waiting for pods to be in 'Running' state..."
+            sleep 5
+          done
+
+          echo "Deployment and all pods are running correctly"
+          exit 0
+        env:
+          USE_GKE_GCLOUD_AUTH_PLUGIN: true

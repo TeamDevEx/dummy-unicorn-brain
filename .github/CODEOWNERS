@@ -1,0 +1,16 @@
+# Repo CODEOWNERS file
+# See https://docs.github.com/en/enterprise-cloud@latest/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# These owners will be the default owners for everything in the repo. 
+# Unless a later match takes precedence, @telus/gen-ai-squad will be requested 
+# for review when someone opens a pull request.
+*       @telus/gen-ai-squad
+
+# For all endpoints managed by the API Accelerator team, they will be requested for
+# review when the accompanying endpoint files are updated
+/api/usecases/file            @telus/cte-aia-genai 
+/api/usecases/milo            @telus/cte-aia-genai 
+/api/usecases/onesource       @telus/cte-aia-genai 
+/api/usecases/public_mobile   @telus/cte-aia-genai 
+/api/usecases/spoc            @telus/cte-aia-genai 
+/api/usecases/t_com           @telus/cte-aia-genai 

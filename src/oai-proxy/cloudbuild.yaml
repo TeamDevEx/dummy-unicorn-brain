@@ -1,0 +1,13 @@
+steps:
+# Build the container image
+- id: docker-getreport
+  name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'northamerica-northeast1-docker.pkg.dev/cdo-gen-ai-island-np-204b23/applications/oai-proxy:${_VERSION}', '.']
+
+# Push the container image to Container Registry
+- id: docker-push-getreport
+  name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'northamerica-northeast1-docker.pkg.dev/cdo-gen-ai-island-np-204b23/applications/oai-proxy:${_VERSION}']
+
+substitutions:
+  _VERSION: v3.alpha6

@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gen-ai-api-np
+  namespace: gen-ai-api-np
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: gen-ai-api-np
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: gen-ai-api-np
+        version: v1
+    spec:
+      serviceAccountName: gen-ai-ksa
+      containers:
+        - name: gen-ai-api-np
+          image: northamerica-northeast1-docker.pkg.dev/cdo-gen-ai-island-np-204b23/applications/gen-ai-api:np
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "512m"
+            limits:
+              memory: "1024Mi"
+              cpu: "1"
+          env:
+            - name: API_ENV
+              value: "np"
+            - name: API_GSM
+              value: "this-is-true"
+            - name: API_GCP_PROJ
+              value: "cdo-gen-ai-island-np-204b23"
+            - name: LOGGING_DATASET
+              value: "logs"
+            - name: SPOC_TABLE
+              value: "spoc_np"
+            - name: ONESOURCE_TABLE
+              value: "onesource_np"
+            - name: MILVUS_COLLECTION_NAME
+              value: "milvus_info_np"
+            - name: UPLOAD_DB_TABLE
+              value: "upload_db_np"
+            - name: MILO_TABLE
+              value: "milo_np"
+            - name: PUBLIC_MOBILE_TABLE
+              value: "public_mobile_np"
+            - name: PSO_TABLE
+              value: "pso_np"
+            - name: TCOM_TABLE 
+              value: "tcom_np"
+            - name: PNC_TABLE
+              value: "pnc_np"
+            - name: SELF_SERVE_BUCKET
+              value: "self-serve-data-cdo-gen-ai-island-np-204b23"
+            - name: ACCESS_CONTROL_COLLECTION_NAME
+              value: "clients_info"
